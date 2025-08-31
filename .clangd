@@ -1,0 +1,22 @@
+CompileFlags:
+  Add: [
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/tools/avr/bin/../lib/gcc/avr/7.3.0/include",
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/tools/avr/bin/../lib/gcc/avr/7.3.0/include-fixed",
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/tools/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/include",
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/tools/avr/avr/include",
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/arduino/avr/cores/arduino",
+    "-I",
+    "d:/user/myprograms/arduinoide/arduino-1.8.19/hardware/arduino/avr/variants/uno",
+    "-I",
+    "./usbdrv",
+    "-I",
+    ".",
+    "-mmcu=atmega328p",
+    "-DF_CPU=16000000UL",
+    "--target=avr"
+  ]

@@ -61,7 +61,7 @@
 #define KEY_SLASH 0x38 // key "/" or with shift "?"
 
 // Special keys
-#define KEY_CAPS LOCK // key "CAPS" 0x39
+#define KEY_CAPS_LOCK  0x39// key "CAPS"
 #define KEY_MENU_KEY 0x64 // key "MENU_KEY"
 #define KEY_POWER 0x65 // key "POWER"
 
@@ -112,13 +112,13 @@
 #define NUMPAD_ASTERISK 0x55 // with numblock active "*"
 #define NUMPAD_SLASH 0x54 // with numblock active "/"
 
-// modifiers
-#define LEFT_CTRL 0x01 //byte mask for the modifier
-#define LEFT_SHIFT 0x02 //byte mask for the modifier
-#define LEFT_ALT 0x04 //byte mask for the modifier
-#define LEFT_GUI 0x08 //byte mask for the modifier
-#define RIGHT_CTRL 0x10 //byte mask for the modifier
-#define RIGHT_SHIFT 0x20 //byte mask for the modifier
-#define RIGHT_ALT 0x40 //byte mask for the modifier
-#define RIGHT_GUI 0x80 //byte mask for the modifier
+// key modifiers
+#define MODIFIER_LEFT_CTRL 0x01 //byte mask for the modifier
+#define MODIFIER_LEFT_SHIFT 0x02 //byte mask for the modifier
+#define MODIFIER_LEFT_ALT 0x04 //byte mask for the modifier
+#define MODIFIER_LEFT_GUI 0x08 //byte mask for the modifier
+#define MODIFIER_RIGHT_CTRL 0x10 //byte mask for the modifier
+#define MODIFIER_RIGHT_SHIFT 0x20 //byte mask for the modifier
+#define MODIFIER_RIGHT_ALT 0x40 //byte mask for the modifier
+#define MODIFIER_RIGHT_GUI 0x80 //byte mask for the modifier
 

@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <avr/interrupt.h>  /* for sei() */
+#include <stdint.h>
 #include <util/delay.h>     /* for _delay_ms() */
 
 #include <avr/pgmspace.h>   /* required by usbdrv.h */
@@ -52,28 +53,22 @@ const PROGMEM char usbHidReportDescriptor[65] = {
 
 typedef struct{
     uchar   modifier;
-    char    reserved;
-    char    key1;
-    char    key2;
-    char    key3;
-    char    key4;
-    char    key5;
-    char    key6;
+    uchar    reserved;
+    uchar    key1;
+    uchar    key2;
+    uchar    key3;
+    uchar    key4;
+    uchar    key5;
+    uchar    key6;
 }report_t;
 
-static report_t reportBuffer;
+static report_t reportBuffer = { 0x00 };
 static uchar    idleRate;
 
 static void sendKey(void)
 {
-    reportBuffer.modifier = 0x00;
-    reportBuffer.reserved = 0x00;
+    reportBuffer.modifier = MODIFIER_LEFT_SHIFT;
     reportBuffer.key1 = KEY_A;
-    reportBuffer.key2 = 0x00;
-    reportBuffer.key3 = 0x00;
-    reportBuffer.key4 = 0x00;
-    reportBuffer.key5 = 0x00;
-    reportBuffer.key6 = 0x00;
     usbSetInterrupt((void *)&reportBuffer, sizeof(reportBuffer));
 }
 
@@ -120,11 +115,14 @@ int __attribute__((noreturn)) main(void)
     _delay_ms(250);
     usbDeviceConnect();
     sei();
+
+    uint64_t step = 0;
     while(1){                /* main event loop */
         usbPoll();
         if(usbInterruptIsReady()){
             /* called after every poll of the interrupt endpoint */
             sendKey();
+            step += 1;
         }
     }
 }

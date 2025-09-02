@@ -1,2 +1,18 @@
+@echo off
+setlocal
 call eavr > nul
-avr-gcc -mmcu=atmega328p -DF_CPU=16000000 -Iusbdrv -I. -Os -o out.elf main.c usbdrv/usbdrv.c usbdrv/usbdrvasm.S
+@echo on
+avr-gcc ^
+    -mmcu=atmega328p ^
+    -DF_CPU=16000000 ^
+    -Iusbdrv ^
+    -I. ^
+    -Ilib ^
+    -Iconfig ^
+    -Os ^
+    -o build/out.elf ^
+    src/main.c ^
+    usbdrv/usbdrv.c ^
+    usbdrv/usbdrvasm.S
+@echo off
+endlocal

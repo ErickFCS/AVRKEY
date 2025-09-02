@@ -1,2 +1,11 @@
+@echo off
+setlocal
 call eavr > nul
-avr-objcopy -O ihex -R .eeprom out.elf out.ihex
+@echo on
+avr-objcopy ^
+    -O ihex ^
+    -R .eeprom ^
+    build/out.elf ^
+    build/out.ihex
+@echo off
+endlocal

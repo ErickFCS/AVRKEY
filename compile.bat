@@ -9,6 +9,7 @@ avr-gcc ^
     -I. ^
     -Ilib ^
     -Iconfig ^
+    -Ichains ^
     -Os ^
     -o build/out.elf ^
     src/main.c ^

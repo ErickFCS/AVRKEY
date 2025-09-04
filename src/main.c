@@ -6,6 +6,7 @@
 #include <util/delay.h> /* for _delay_ms() */
 
 #include "CHAINS.h"
+#include "usbconfig.h"
 #include "usbdrv.h"
 
 /* ------------------------------------------------------------------------- */
@@ -84,10 +85,10 @@ usbMsgLen_t usbFunctionSetup(uchar data[8]) {
     if (rq->bRequest == USBRQ_HID_GET_REPORT) {
       /* Value: ReportType (highbyte), ReportID (lowbyte) */
       /* we only have one report type, so don't look at wValue */
-      usbMsgPtr = (void *)&reportBuffer;
+      usbMsgPtr = (usbMsgPtr_t)&reportBuffer;
       return sizeof(reportBuffer);
     } else if (rq->bRequest == USBRQ_HID_GET_IDLE) {
-      usbMsgPtr = &idleRate;
+      usbMsgPtr = (usbMsgPtr_t)&idleRate;
       return 1;
     } else if (rq->bRequest == USBRQ_HID_SET_IDLE) {
       idleRate = rq->wValue.bytes[1];
@@ -101,7 +102,7 @@ usbMsgLen_t usbFunctionSetup(uchar data[8]) {
 
 /* ------------------------------------------------------------------------- */
 
-int __attribute__((noreturn)) main(void) {
+int __attribute__(()) main(void) {
   wdt_disable();
   /* Even if you don't use the watchdog, turn it off here. On newer devices,
    * the status of the watchdog (on/off, period) is PRESERVED OVER RESET!

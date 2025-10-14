@@ -120,17 +120,15 @@ int __attribute__(()) main(void) {
 
   uint64_t step = 0;
   uint64_t delayCount = 0;
-  const uint8_t keyChain[] = KEY_CHAIN;
-  const uint8_t modifierChain[] = MODIFIER_CHAIN;
-  const uint8_t delayChain[] = DELAY_CHAIN;
+  const uint8_t keyChain[][3] = KEY_CHAIN;
   const uint16_t chainLength = sizeof(keyChain) / sizeof(keyChain[0]);
   /* main event loop */
   while (1) {
     usbPoll();
     /* one second is like 250k */
-    if (usbInterruptIsReady() && delayCount >= delayChain[step] * 50000ULL) {
+    if (usbInterruptIsReady() && delayCount >= keyChain[step][2] * 50000ULL) {
       /* called after every poll of the interrupt endpoint */
-      sendKey(keyChain[step], modifierChain[step]);
+      sendKey(keyChain[step][0], keyChain[step][1]);
       while (1) {
         usbPoll();
         if (usbInterruptIsReady()) {
